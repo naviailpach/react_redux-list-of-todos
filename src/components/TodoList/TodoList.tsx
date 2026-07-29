@@ -1,9 +1,8 @@
 /* eslint-disable */
 import classNames from 'classnames';
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { init } from '../../features/todos';
 import { actions as currentTodoActions } from '../../features/currentTodo';
 
 export const TodoList: React.FC = () => {
@@ -11,10 +10,6 @@ export const TodoList: React.FC = () => {
   const { todos, error } = useAppSelector(state => state.todos);
   const { query, status } = useAppSelector(state => state.filter);
   const currentTodo = useAppSelector(state => state.currentTodo);
-
-  useEffect(() => {
-    dispatch(init());
-  }, []);
 
   if (error) {
     return <p className="notification is-warning">{error}</p>;

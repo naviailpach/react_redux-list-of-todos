@@ -1,10 +1,17 @@
 import 'bulma/css/bulma.css';
 import '@fortawesome/fontawesome-free/css/all.css';
 import { Loader, TodoFilter, TodoList, TodoModal } from './components';
-import { useAppSelector } from './app/hooks';
+import { useAppDispatch, useAppSelector } from './app/hooks';
+import { useEffect } from 'react';
+import { init } from './features/todos';
 
 export const App = () => {
   const { todos, loading } = useAppSelector(state => state.todos);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(init());
+  }, [dispatch]);
 
   return (
     <>
